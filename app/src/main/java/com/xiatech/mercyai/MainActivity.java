@@ -35,6 +35,7 @@ public class MainActivity extends Activity {
     private LinearLayout content;
     private String currentPage = "Home";
     private SharedPreferences memory;
+    private EditText chatMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,12 +105,12 @@ public class MainActivity extends Activity {
         } else if ("Chat".equals(page)) {
             addCard(content, "Chat workspace", "The chat interface is ready. An AI model or API connection has not been added yet, so messages are not sent to an AI service.");
             addSpace(content, 12);
-            EditText message = input("Write a message...");
-            content.addView(message);
+            chatMessage = input("Write a message...");
+            content.addView(chatMessage);
             addSpace(content, 8);
             LinearLayout actions = horizontal();
             actions.addView(makeButton("Voice input", () -> startVoice()), new LinearLayout.LayoutParams(0, dp(48), 1));
-            actions.addView(makeButton("Clear", () -> message.setText("")),
+            actions.addView(makeButton("Clear", () -> chatMessage.setText("")),
                     new LinearLayout.LayoutParams(0, dp(48), 1));
             content.addView(actions);
             addSpace(content, 10);
@@ -262,6 +263,8 @@ public class MainActivity extends Activity {
                     RecognizerIntent.EXTRA_RESULTS);
             if (results != null && !results.isEmpty()) {
                 showPage("Chat");
+                chatMessage.setText(results.get(0));
+                chatMessage.setSelection(chatMessage.length());
                 toast("Speech captured. You can edit it before using it.");
             }
         } else if (requestCode == REQUEST_FILE || requestCode == REQUEST_IMAGE) {
