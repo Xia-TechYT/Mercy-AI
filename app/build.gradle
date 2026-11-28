@@ -9,9 +9,9 @@ android {
     defaultConfig {
         applicationId 'com.xiatech.mercyai'
         minSdk 27
-        targetSdk 28
+        targetSdk 35
         versionCode 1
-        versionName '1.0'
+        versionName '0.1.0-alpha'
     }
 
     compileOptions {
