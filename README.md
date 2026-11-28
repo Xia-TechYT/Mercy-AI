@@ -28,6 +28,8 @@ The interface does not claim these unfinished features are available.
 
 ## Build
 
+A GitHub Actions workflow is configured to compile the debug APK when changes are pushed to this branch.
+
 Open the project in a compatible Android Gradle Plugin / Gradle environment and build the debug APK:
 
 ```sh
